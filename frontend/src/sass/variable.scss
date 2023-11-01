@@ -1,0 +1,27 @@
+$color-primary: #646cff;
+$color-secondary: #0369a1;
+$color-green-500: #22c55e;
+$color-grey-500: #6b7280;
+
+$sm: 40em; //640px
+$md: 48em; //768px
+$lg: 64em; //1024px
+$xl: 80em; //1280px
+$xl2: 96em; //1536px
+
+
+
+
+// @mixin sm {
+//   @media only screen and (min-width: 40em) {
+//     //640px
+//     @content;
+//   }
+// }
+
+// @mixin md {
+//   @media only screen and (min-width: 48em) {
+//     //768px
+//     @content;
+//   }
+// }

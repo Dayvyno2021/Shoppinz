@@ -1,0 +1,144 @@
+a {
+  font-weight: 500;
+  color: $color-primary;
+  text-decoration: inherit;
+}
+
+a:hover {
+  // color: #535bf2;
+  color: $color-secondary;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: #646cff;
+  transition: all .3s;
+}
+
+.remove__border {
+  border: none;
+  outline: none;
+
+  &:hover,
+  &:active,
+  &:visited, &:focus, & *:focus, & * {
+    border: none;
+    outline: none;
+  }
+
+}
+
+button:hover {
+  color: darken($color: #646cff, $amount: 5);
+  background-color: darken($color: #f9f9f9, $amount: 5);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    // color: #747bff;
+    // color: #747bff;
+  }
+}
+
+//Style the rating stars
+.star_rating{
+  & svg{
+    color: #fbbf24;
+
+    font-size: 0.75rem;
+
+    @media only screen and (min-width: $md){
+      font-size: 1rem;
+    }
+  }
+}
+
+.trash_can{
+  border: none;
+  outline: none;
+}
+
+.trash_can:hover{
+  border: none;
+  outline: none;
+  transition: transform .3s;
+  
+  &>svg{
+    transform: rotate(7deg);
+  }
+}
+
+.trash_can:active{
+  border: none;
+  outline: none;
+  transition: transform .3s;
+
+  &>svg{
+    transform: rotate(15deg);
+  }
+}
+
+.custom__form {
+  @apply w-[90%] sm:w-[80%] md:w-[640px] bg-stone-200 mb-10 px-2 sm:px-5 md:px-10 py-10 h-min mt-10 flex flex-col gap-5 rounded-2xl border-x-4 border-green-300;
+
+  label {
+    @apply font-bold w-[18%] text-sm lg:text-base;
+  }
+
+  input {
+    @apply w-[72%] p-2 rounded focus:outline-0 bg-stone-100 focus:bg-white;
+  }
+
+  .form__control {
+    @apply w-full flex justify-between items-center relative;
+  }
+
+  .eye__cover {
+    @apply absolute top-[50%] right-1 w-min;
+    transform: translateY(-50%);
+  }
+
+  .password__validation {
+    @apply right-0 w-[72%] flex justify-evenly;
+  }
+
+  .check__green {
+    color: $color-green-500;
+  }
+
+  .check__gray {
+    color: $color-grey-500;
+  }
+}
+
+.angle90{
+  transform: rotate(90deg);
+  color: red;
+}
