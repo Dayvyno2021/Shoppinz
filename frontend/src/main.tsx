@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom/client';
 import App from './App.tsx'
 import './index.scss';
 import { Provider } from 'react-redux';
+import PrivateRoute from './components/PrivateRoute.tsx';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen.tsx';
 import ProductScreen from './screens/ProductScreen.tsx';
@@ -14,6 +15,7 @@ import RegisterSuccess from './screens/RSuccessScreen.tsx';
 import VerifyEmailScreen from './screens/VerifyScreen.tsx';
 import ResetPasswordScreen from './screens/ResetPasswordScreen.tsx';
 import CompletePasswordResetScreen from './screens/CompletePasswordResetScreen.tsx';
+import ShippingScreen from './screens/ShippingScreen.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +29,10 @@ const router = createBrowserRouter(
       <Route path='/verify' element={<VerifyEmailScreen />} />
       <Route path='/password-reset' element={<ResetPasswordScreen />} />
       <Route path='/password-reset/confirm' element={<CompletePasswordResetScreen />} />
+
+      <Route path='' element={<PrivateRoute />}>
+        <Route path='/shipping' element={<ShippingScreen />} />
+      </Route>
     </Route>
   )
 )

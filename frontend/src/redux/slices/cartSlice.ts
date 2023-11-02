@@ -24,10 +24,13 @@ export interface Cart{
   shippingPrice?: string;
   taxPrice?: string;
   totalPrice?: string;
+  shippingAddress?: {address?: string, city?: string, postalCode?: string, country?: string},
+  paymentMethod?: string
+
 }
 
 const initialState: Cart = window.localStorage.getItem('cart') ? 
-  JSON.parse(window.localStorage.getItem('cart') || '') : { cartItems: [], itemsPrice: '0', shippingPrice: '0', taxPrice: '0', totalPrice: '0' }
+  JSON.parse(window.localStorage.getItem('cart') || '') : { cartItems: [], itemsPrice: '0', shippingPrice: '0', taxPrice: '0', totalPrice: '0', shippingAddress: {}, paymentMethod: 'Paypal' }
 
 const cartSlice = createSlice({
   name: "cart",
@@ -56,13 +59,21 @@ const cartSlice = createSlice({
       state.cartItems = state.cartItems.filter((item) => item._id !== action.payload);
 
 
-      localStorage.setItem('cart', JSON.stringify(state));
+      // localStorage.setItem('cart', JSON.stringify(state));
+      return updateCart(state); //The main purpose of running this function is for the localStorage function above, I can run the above localStorage function and omit this
+    },
+
+    saveShippingAddress: (state, action) => {
+      state.shippingAddress = action.payload;
+
+      // localStorage.setItem('cart', JSON.stringify(state))
+      return updateCart(state); //The main purpose of running this function is for the localStorage function above, I can run the above localStorage function and omit this
     }
 
   }
 
 })
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, saveShippingAddress } = cartSlice.actions;
 
 export default cartSlice.reducer;
