@@ -35,10 +35,11 @@ const VerifyEmailScreen = () => {
       }
       try {
         const res = await verifyRegister({ token, email }).unwrap();
-        console.log("RES: ", res);
+        // console.log("RES: ", res);
         dispatch(verifyUser({ ...res }));
       } catch (err) {
-        toast.error('Error verifying user! Email link may have espired');
+        const ee = (error as any)?.data?.message || (error as any)?.error;
+        toast.error(ee);
       }
     }
 

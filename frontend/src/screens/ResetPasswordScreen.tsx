@@ -5,6 +5,7 @@ import Message from '../components/Message';
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../redux/hooks';
 import { useResetPasswordMutation } from '../redux/slices/usersApiSlice';
+import { toast } from 'react-toastify';
 
 const ResetPasswordScreen = () => {
 
@@ -25,7 +26,8 @@ const ResetPasswordScreen = () => {
       setData(res);
       
     } catch (error) {
-      
+      const ee = (error as any)?.data?.message || (error as any)?.error;
+      toast.error(ee);
     } finally {
       setEmail('');
     }
