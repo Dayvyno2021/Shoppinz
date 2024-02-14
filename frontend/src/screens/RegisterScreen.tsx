@@ -12,6 +12,9 @@ const RegisterScreen = () => {
   //initialize useRouter
   const navigate = useNavigate();
 
+  //Catch errors
+  const [err, setErr] = useState('');
+
   const {userInfo} = useAppSelector(state=>state.authSlice)
 
   //Initialize passwordVisible to control password visibility
@@ -55,8 +58,10 @@ const RegisterScreen = () => {
     try {
       await register({ firstName, lastName, email, password }).unwrap();
       navigate('/register/success');
+      setErr('');
     } catch (error) {
-      
+      const ee = (error as any)?.data?.message || (error as any)?.error;
+      setErr(ee);
     } finally {
       setFirstName('');
       setLastName('')
@@ -82,6 +87,8 @@ const RegisterScreen = () => {
     <div className='min-h-[75vh] flex justify-center'>
       <div id='register' className="custom__form">
         <h1 className="font-bold text-lg text-center">Register With Credentials</h1>
+        {err? (<p className="text-center text-xs text-red-400"> {err} </p>):('')}
+        
         <form className="flex flex-col gap-5" onSubmit={handleFormRegister}>
         <div className="form__control">
           <label htmlFor="fn" className=''>First Name</label>
